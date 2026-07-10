@@ -83,7 +83,7 @@ This flexibility allows developers to balance computational load or dedicate pro
 
 ---
 
-# Summary
+# Key Takeaways
 
 In this chapter you reviewed the fundamental concepts required to understand multicore embedded systems.
 
