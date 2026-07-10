@@ -16,67 +16,85 @@
 
 </p>
 
-## Objectives
+## Overview
 
-This repository contains
-
-- Laboratory Manual
-- FreeRTOS SMP examples
-- RP2040 template project
-- Multicore experiments
-- Complete solutions
+This repository contains a complete laboratory manual designed to teach multicore embedded programming using the Raspberry Pi RP2040 microcontroller and the official FreeRTOS SMP kernel.
 
 ---
 
-## Repository Structure
+## Documentation
 
-📁 docs
-
-📁 examples
-
-📁 template_project
-
-📁 assets
-
----
-
-## Manual
-
-Chapter 0
-
-Chapter 1
-
-Chapter 2
-
-Laboratory 1
-
-Laboratory 2
-
-Laboratory 3
-
-...
+| Section | Description |
+|----------|-------------|
+| Getting Started | Development environment |
+| Chapter 0 | Environment setup |
+| Chapter 1 | RP2040 Architecture |
+| Chapter 2 | FreeRTOS SMP Fundamentals |
+| Laboratory 1 | Discovering the Scheduler |
+| Laboratory 2 | Designing Multicore Applications |
+| Troubleshooting | Common problems |
+| References | Books and Documentation |
 
 ---
 
-## Examples
+# Learning Path
 
-Hello Multicore
-
-Affinity
-
-Queues
-
-Mutex
-
-Notifications
-
-Timers
+1. Environment Setup
+2. RP2040 Architecture
+3. FreeRTOS SMP
+4. Laboratory 1
+5. Laboratory 2
+6. Advanced Laboratories
+7. Final Project
 
 ---
 
 ## Hardware
 
-Pololu Zumo RP2040
+The laboratories were designed using the following hardware:
+
+- Pololu Zumo RP2040 Robot
+- Raspberry Pi Pico (compatible)
+
+---
+
+# Software
+
+The following software versions were used.
+
+| Tool | Version |
+|-------|----------|
+| Visual Studio Code | Latest |
+| Pico SDK | 2.3.0 |
+| ARM GNU Toolchain | 15.2 |
+| FreeRTOS Kernel | V11.x |
+| CMake | Latest |
+| Ninja | Latest |
+
+---
+
+# Repository Structure
+
+```text
+.
+├── assets/
+├── docs/
+├── examples/
+├── template_project/
+├── README.md
+└── LICENSE
+```
+---
+
+# Screenshots
+
+Coming soon...
+
+---
+
+# Citation
+
+If you use this material in an academic course, please cite this repository.
 
 ---
 
