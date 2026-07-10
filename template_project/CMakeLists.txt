@@ -87,6 +87,7 @@ include(FreeRTOS_Kernel_import.cmake)
 # ----------------------------------------------------------------------------
 add_executable(${PROJECT_NAME}
     src/main.c
+    # Add additional source files here
 )
 
 # ----------------------------------------------------------------------------
@@ -96,6 +97,7 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/config
         ${CMAKE_CURRENT_LIST_DIR}/include
+        # Add additional include directories here
 )
 
 # ----------------------------------------------------------------------------
