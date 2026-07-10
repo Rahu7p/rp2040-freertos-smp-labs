@@ -12,7 +12,7 @@
 
 <p align="center">
 
-<img src="assets/logo/banner.png" width="900">
+<img src="assets/logo/cEmb.png" width="900">
 
 </p>
 
