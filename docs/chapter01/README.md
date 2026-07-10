@@ -1,5 +1,5 @@
 # Chapter 1
-# Quick Review: Multicore Fundamentals
+# Why do embedded systems need more than one processor core?
 
 ---
 
