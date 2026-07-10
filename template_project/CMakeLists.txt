@@ -80,7 +80,7 @@ target_include_directories(freertos_config
         ${CMAKE_CURRENT_LIST_DIR}/config
 )
 
-include(FreeRTOS_Kernel_import.cmake)
+include(cmake/FreeRTOS_Kernel_import.cmake)
 
 # ----------------------------------------------------------------------------
 # Application Sources
