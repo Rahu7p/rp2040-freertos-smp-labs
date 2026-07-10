@@ -3,6 +3,7 @@
 This project is the starting point for every laboratory in the **RP2040 FreeRTOS SMP Laboratory Manual**.
 
 It contains a fully configured development environment for the Raspberry Pi RP2040 using the Pico SDK and the FreeRTOS SMP kernel.
+
 ---
 
 # Project Contents
