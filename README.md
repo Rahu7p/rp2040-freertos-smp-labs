@@ -1,6 +1,12 @@
 # RP2040 FreeRTOS SMP Labs
 
-Professional laboratory manual for learning multicore embedded systems using the RP2040 and FreeRTOS SMP.
+> A complete laboratory manual for learning multicore embedded systems using the RP2040 and FreeRTOS SMP.
+
+---
+
+**Author:** Raúl Peña Ortega
+
+**Institution:** Tecnológico de Monterrey
 
 ---
 
