@@ -37,7 +37,7 @@ This repository contains a complete laboratory manual designed to teach multicor
 
 ---
 
-# Learning Path
+## Learning Path
 
 1. Environment Setup
 2. RP2040 Architecture
@@ -58,7 +58,7 @@ The laboratories were designed using the following hardware:
 
 ---
 
-# Software
+## Software
 
 The following software versions were used.
 
@@ -73,7 +73,7 @@ The following software versions were used.
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 ```text
 .
@@ -86,18 +86,14 @@ The following software versions were used.
 ```
 ---
 
-# Screenshots
+## Screenshots
 
 Coming soon...
 
 ---
 
-# Citation
+## Citation
 
 If you use this material in an academic course, please cite this repository.
 
 ---
-
-## License
-
-MIT
