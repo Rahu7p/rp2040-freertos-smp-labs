@@ -9,47 +9,39 @@
 
 ---
 
-## Learning Outcomes
-
-After completing this laboratory, you should be able to:
-
-- Observe how the FreeRTOS SMP scheduler distributes tasks.
-- Identify the processor core executing each task.
-- Configure task affinity.
-- Analyze the effect of task affinity on scheduler behavior.
-
----
-
 ## Required Material
 
 ### Hardware
 
 - Pololu Zumo RP2040 Robot
-- USB Cable
+- USB-C Cable
 
 ### Software
 
-- Visual Studio Code
-- Raspberry Pi Pico Extension
+- Visual Studio Code | Raspberry Pi Pico Extension
 - RP2040 FreeRTOS SMP Template Project
 
 ---
 
-# Activity 1 - Observing the Scheduler
+# Activity 1. Observing the Scheduler
 
 ---
 
 ## Objective
 
-Create two FreeRTOS tasks with identical characteristics and observe their execution through the serial terminal.
+Create two identical FreeRTOS tasks and observe their execution through the serial terminal before introducing multicore-specific features.
 
-The objective of this activity is to become familiar with the scheduler before introducing multicore-specific functions.
+---
+
+## Estimated Time
+
+15–20 minutes
 
 ---
 
 ## Procedure
 
-1. Open the **Template Project**.
+1. Open the **Template Project**. (https://github.com/Rahu7p/rp2040-freertos-smp-labs/tree/main/template_project)
 2. Create two FreeRTOS tasks named:
    - `TaskA`
    - `TaskB`
@@ -60,13 +52,12 @@ The objective of this activity is to become familiar with the scheduler before i
 4. Do **not** configure task affinity.
 5. Start the scheduler.
 
-Use the following application structure as a reference.
+Use the following `main()` structure as a reference.
 
 ```c
 int main(void)
 {
     stdio_init_all();
-
     sleep_ms(2000);
 
     // Create TaskA
@@ -74,12 +65,12 @@ int main(void)
     // Create TaskB
 
     vTaskStartScheduler();
-
-    while (true);
+    while (1) {
+    }
 }
 ```
 
-Each task should periodically print its own name.
+The serial terminal should display output similar to the following:
 
 Example:
 
@@ -99,8 +90,7 @@ Task B
 
 After running the application:
 
-- Both tasks should execute continuously.
-- Both tasks should produce periodic serial output.
+- Both tasks should execute periodically.
 - Since no multicore information is printed, it should not be possible to determine which processor core executed each task.
 
 ---
