@@ -127,3 +127,86 @@ Before continuing to Activity 2, verify the following.
 At this point, you can observe **which task** is executing, but you cannot determine **which processor core** executed the task.
 
 In the next activity, you will identify the processor core executing each task and compare the observed behavior with the expected scheduler operation.
+
+---
+
+# Activity 2. Identifying the Executing Core
+
+---
+
+## Objective
+
+Identify the processor core executing each FreeRTOS task and observe how the scheduler assigns tasks to the available processor cores.
+
+---
+
+## Procedure
+
+Starting from the solution developed in **Activity 1**, modify both tasks to display the processor core executing each task.
+
+Use the following function.
+
+```c
+get_core_num();
+```
+
+Each task should now print both its name and the processor core number.
+
+Example:
+
+```text
+Task A -> Core 0
+Task B -> Core 1
+Task A -> Core 0
+Task B -> Core 1
+...
+```
+
+Build the project and execute the application.
+
+Allow the application to run for approximately **one minute** while observing the Serial Monitor. If no processor core reassignment is observed, continue running the application for a longer period before collecting the required evidence.
+
+---
+
+## Expected Behavior
+
+After running the application:
+
+- Both tasks should continue executing periodically.
+- Each message should include the processor core number.
+- The scheduler may keep each task on the same processor core for an extended period of time.
+- Depending on the scheduler behavior, a task may also be reassigned to the other processor core during execution.
+
+> [!TIP]
+> Pay close attention to the processor core number associated with each task. If a task changes from one processor core to the other during execution, identify where the reassignment occurred.
+
+---
+
+## Evidence Collection
+
+Collect the following evidence before continuing.
+
+| Evidence ID | Description |
+|--------------|-------------|
+| **E2.1** | Capture the modified implementation of `TaskA()` and `TaskB()` showing the use of `get_core_num()`. |
+| **E2.2** | Capture the Serial Monitor showing the execution of both tasks. If a processor core reassignment occurs during execution, annotate the image to indicate where the reassignment occurred. Otherwise, indicate that no reassignment was observed during the experiment. |
+
+---
+
+## Checkpoint
+
+Before continuing to Activity 3, verify the following.
+
+- [ ] The project builds successfully.
+- [ ] Both tasks continue executing periodically.
+- [ ] The processor core number is displayed correctly.
+- [ ] The Serial Monitor clearly identifies the processor core executing each task.
+- [ ] No task affinity has been configured.
+
+---
+
+## Next Activity
+
+So far, the scheduler has been free to decide where each task executes.
+
+In the next activity, you will configure **task affinity** and compare the scheduler behavior before and after restricting a task to a specific processor core.
