@@ -48,7 +48,7 @@ Install the following software before continuing.
 
 # 3. Installing Visual Studio Code
 
-1. Download **Visual Studio Code**.
+1. Download **Visual Studio Code** from the official website.
 2. Run the installer.
 3. Accept the default installation options.
 4. Launch Visual Studio Code.
@@ -59,7 +59,7 @@ Install the following software before continuing.
 
 # 4. Installing Git
 
-1. Download **Git**.
+1. Download **Git** from the official website.
 2. Install using the default options.
 3. Verify the installation by opening a terminal and executing:
 
@@ -95,13 +95,13 @@ During the initial configuration, the extension automatically downloads and conf
 
 # 6. Cloning the Repository
 
-Clone the repository using Git.
+Clone the repository into a local directory of your choice.
+
+For example, on Windows open a terminal and copy:
 
 ```bash
 git clone https://github.com/Rahu7p/rp2040-freertos-smp-labs.git
 ```
-
-Open the cloned repository using Visual Studio Code.
 
 > **Figure 0.4.** Cloning the repository.
 
@@ -109,13 +109,25 @@ Open the cloned repository using Visual Studio Code.
 
 # 7. Opening the Template Project
 
-Navigate to the following directory.
+Navigate to the Template Project directory.
+
+Example (Windows):
 
 ```text
-template_project/
+C:/rp2040-freertos-smp-labs/template_project/
 ```
 
-Open this folder using Visual Studio Code.
+Open the folder in Visual Studio Code from a terminal by executing:
+
+```bash
+code .
+```
+
+>[!IMPORTANT]
+>
+>When Visual Studio Code asks whether to import the folder as a Raspberry Pi Pico Project, click Yes before continuing.
+
+> **Figure 0.5.** Import Project Dialog.
 
 The Template Project contains a fully configured FreeRTOS SMP application that will serve as the starting point for all laboratory activities.
 
@@ -129,29 +141,44 @@ Since the project already includes the FreeRTOS Kernel and all required configur
 
 # 8. Building the Project
 
-Build the Template Project using the Raspberry Pi Pico Extension.
+Build the Template Project using the Raspberry Pi Pico Extension. Click the **Compile** button located in the lower-right corner of Visual Studio Code.
 
 The build process should complete successfully without errors.
 
-> **Figure 0.5.** Successful project build.
+>[!TIP]
+>
+>The first build may take several minutes because the Pico SDK and toolchain components are configured automatically.
+
+> **Figure 0.6.** Successful project build.
 
 ---
 
-# 9. Programming the RP2040
+# 9. Installing the Zadig Driver
 
-Connect the Pololu Zumo RP2040 Robot using the USB-C cable.
+Install the Zadig driver. (https://zadig.akeo.ie/)
 
-Program the generated firmware using the Raspberry Pi Pico Extension.
+---
 
-After programming the board, open the Serial Monitor.
+# 10. Programming the RP2040
+
+Follow these steps every time you need to program your Pololu Zumo RP2040 Robot:
+
+1. Unplug the USB-C cable from the Zumo 2040.
+2. Press and hold the Bootloader pushbutton (Button B).
+3. Plug the USB-C cable back into the robot while continuing to hold the button.
+4. The board will now show up on your computer as a flash drive named RPI-RP2.
+
+Program the generated firmware using the Raspberry Pi Pico Extension. Click the **Run** button located in the lower-right corner.
+
+After programming the board, open the Serial Monitor. Select the serial port corresponding to the RP2040 (typically shown as `USB Serial Device (COMx)` on Windows).
 
 The demonstration application should begin executing automatically.
 
-> **Figure 0.6.** Programming the RP2040.
+> **Figure 0.7.** Programming the RP2040.
 
 ---
 
-# 10. Verifying the Development Environment
+# 11. Verifying the Development Environment
 
 Before continuing, verify the following.
 
