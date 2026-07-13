@@ -155,7 +155,9 @@ The build process should complete successfully without errors.
 
 # 9. Installing the Zadig Driver
 
-Install the Zadig driver. (https://zadig.akeo.ie/)
+Install the Zadig driver. 
+
+https://zadig.akeo.ie/
 
 ---
 
