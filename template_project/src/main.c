@@ -1,18 +1,15 @@
 #include "main.h"
 
-TaskHandle_t TaskAHandle = NULL;
-TaskHandle_t TaskBHandle = NULL;    
+TaskHandle_t TaskAHandle = NULL;  
 
 void TaskA(void *pvParameters);
-void TaskB(void *pvParameters);
 
 int main()
 {
     stdio_init_all();
-    sleep_ms(2000);   // Esperar a que el puerto USB CDC esté listo
+    sleep_ms(2000);
 
     xTaskCreate( TaskA, "TaskA", 256, NULL, tskIDLE_PRIORITY + 1, &TaskAHandle);
-    xTaskCreate( TaskB, "TaskB", 256, NULL, tskIDLE_PRIORITY + 1, &TaskBHandle);
 
     printf("Starting Scheduler...\r\n");
 
@@ -24,6 +21,7 @@ int main()
 }
 
 /*--------------------------------------------------------------------*/
+
 void TaskA(void *pvParameters) {
     
     while (1) {
@@ -31,15 +29,9 @@ void TaskA(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
-/*-----------------------------------------------------------*/
-void TaskB(void *pvParameters) {
 
-    while (1) {
-        printf("Task B\r\n");
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-}
 /*-----------------------------------------------------------*/
+
 void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName) {
     (void)xTask;
     (void)pcTaskName;
@@ -48,7 +40,9 @@ void vApplicationStackOverflowHook(TaskHandle_t xTask, char *pcTaskName) {
 
     }
 }
+
 /*-----------------------------------------------------------*/
+
 void vApplicationMallocFailedHook(void)
 {
     while (1) {
