@@ -9,7 +9,7 @@
  *----------------------------------------------------------*/
 #define configCPU_CLOCK_HZ                     ( 125000000UL )
 #define configTICK_RATE_HZ                     ( (TickType_t)1000 )
-#define configNUMBER_OF_CORES                  2
+#define configNUMBER_OF_CORES                  1
 /*-----------------------------------------------------------
  * Scheduler
  *----------------------------------------------------------*/
