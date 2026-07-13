@@ -569,18 +569,14 @@ Before completing the laboratory, verify the following.
 
 ---
 
-## Laboratory Summary
+# Key Takeaways
 
-During this laboratory, you investigated how the FreeRTOS SMP scheduler behaves in a multicore embedded system.
+After completing this laboratory, you should be able to explain the following concepts.
 
-You explored:
-- Creating multiple FreeRTOS tasks.
-- Identifying the processor core executing each task.
-- Observing task distribution across two processor cores.
-- Restricting scheduler decisions using task affinity.
-- Applying task affinity to multiple tasks.
-- Investigating the effect of task priority on scheduler behavior.
-
-One of the most important observations is that **task priority alone does not guarantee a visible change in execution**. The scheduler makes decisions based on both **task priority** and **task state**.
-A high-priority task that never blocks can monopolize processor time, while a high-priority task that periodically blocks allows lower-priority tasks to execute.
-Understanding this interaction between **priority**, **task state**, and **scheduler decisions** is fundamental when designing responsive and efficient real-time embedded systems.
+- FreeRTOS SMP can execute tasks simultaneously on multiple processor cores.
+- The scheduler determines task placement unless task affinity is configured.
+- Task affinity restricts where a task is allowed to execute.
+- Multiple tasks may share the same processor core.
+- Task priority only influences scheduling when multiple Ready tasks compete for processor time.
+- A high-priority task that never blocks can monopolize processor time and prevent lower-priority tasks from executing.
+- Voluntarily blocking a task allows the scheduler to execute other Ready tasks.
