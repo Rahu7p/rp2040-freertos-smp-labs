@@ -3,9 +3,9 @@
 
 ---
 
-This chapter guides you through the installation and verification of the development environment required for the laboratories.
+This chapter guides you through the installation and verification of the development environment required to complete the laboratories presented in this manual.
 
-By the end of this chapter, your computer and RP2040 board should be ready to build, program, and execute the provided Template Project.
+By the end of this chapter, your computer should be able to build, program, and execute the provided Template Project.
 
 ---
 
@@ -15,9 +15,9 @@ The following hardware is required throughout this manual.
 
 | Hardware | Description |
 |----------|-------------|
-| Pololu Zumo RP2040 Robot or Raspberry Pico RP2040 Board | Development platform used in all laboratories |
+| Pololu Zumo RP2040 Robot | Development platform used in all laboratories |
 | USB-C Cable | Programming and serial communication |
-| Personal Computer | Windows, Linux or macOS |
+| Personal Computer | Windows, Linux, or macOS |
 
 ---
 
@@ -27,44 +27,73 @@ Install the following software before continuing.
 
 | Software | Purpose |
 |----------|---------|
-| Visual Studio Code | Development Environment |
-| Raspberry Pi Pico Extension | RP2040 project management |
-| Git | Clone the repository |
+| Visual Studio Code | Development environment |
+| Git | Repository cloning and version control |
+| Raspberry Pi Pico Extension | RP2040 development environment |
 
 > [!NOTE]
 >
-> The Raspberry Pi Pico Extension automatically installs most required build tools during its initial configuration.
+> During its initial configuration, the Raspberry Pi Pico Extension automatically downloads and configures the required development tools, including:
+>
+> - ARM GNU Toolchain
+> - CMake
+> - Ninja
+> - Pico SDK
+> - OpenOCD
+> - picotool
+>
+> No manual installation of these tools is required.
 
 ---
 
 # 3. Installing Visual Studio Code
 
-1. Download Visual Studio Code. (https://code.visualstudio.com/)
+1. Download **Visual Studio Code**.
 2. Run the installer.
 3. Accept the default installation options.
 4. Launch Visual Studio Code.
 
-> **Figure 0.1.** Visual Studio Code installation.
+> **Figure 0.1.** Installing Visual Studio Code.
 
 ---
 
-# 4. Installing the Raspberry Pi Pico Extension
+# 4. Installing Git
 
-Open the **Extensions** panel inside Visual Studio Code.
+1. Download **Git**.
+2. Install using the default options.
+3. Verify the installation by opening a terminal and executing:
 
-Search for:
-
+```bash
+git --version
 ```
+
+If Git has been installed correctly, its version number should be displayed.
+
+> **Figure 0.2.** Verifying the Git installation.
+
+---
+
+# 5. Installing the Raspberry Pi Pico Extension
+
+Inside Visual Studio Code:
+
+1. Open the **Extensions** panel.
+2. Search for:
+
+```text
 Raspberry Pi Pico
 ```
 
-Install the official extension.
+3. Install the official Raspberry Pi Pico Extension.
+4. Follow the setup wizard.
 
-> **Figure 0.2.** Raspberry Pi Pico Extension.
+During the initial configuration, the extension automatically downloads and configures the required build tools.
+
+> **Figure 0.3.** Installing the Raspberry Pi Pico Extension.
 
 ---
 
-# 5. Cloning the Repository
+# 6. Cloning the Repository
 
 Clone the repository using Git.
 
@@ -72,15 +101,15 @@ Clone the repository using Git.
 git clone https://github.com/Rahu7p/rp2040-freertos-smp-labs.git
 ```
 
-Open the repository using Visual Studio Code.
+Open the cloned repository using Visual Studio Code.
 
-> **Figure 0.3.** Repository cloned successfully.
+> **Figure 0.4.** Cloning the repository.
 
 ---
 
-# 6. Opening the Template Project
+# 7. Opening the Template Project
 
-Navigate to:
+Navigate to the following directory.
 
 ```text
 template_project/
@@ -88,64 +117,71 @@ template_project/
 
 Open this folder using Visual Studio Code.
 
-The Template Project contains a fully configured FreeRTOS SMP application that will be used throughout this manual.
+The Template Project contains a fully configured FreeRTOS SMP application that will serve as the starting point for all laboratory activities.
 
-Do not modify this project before completing Laboratory 1.
+Since the project already includes the FreeRTOS Kernel and all required configuration files, no additional setup is required.
+
+> [!IMPORTANT]
+>
+> Do not modify the Template Project before completing Laboratory 1.
 
 ---
 
-# 7. Building the Project
+# 8. Building the Project
 
-Build the project using the Raspberry Pi Pico Extension.
+Build the Template Project using the Raspberry Pi Pico Extension.
 
 The build process should complete successfully without errors.
 
-> **Figure 0.4.** Successful build.
+> **Figure 0.5.** Successful project build.
 
 ---
 
-# 8. Programming the RP2040
+# 9. Programming the RP2040
 
-Connect the RP2040 board using the USB-C cable.
+Connect the Pololu Zumo RP2040 Robot using the USB-C cable.
 
 Program the generated firmware using the Raspberry Pi Pico Extension.
 
-After programming, open the Serial Monitor.
+After programming the board, open the Serial Monitor.
 
 The demonstration application should begin executing automatically.
 
-> **Figure 0.5.** Programming the RP2040.
+> **Figure 0.6.** Programming the RP2040.
 
 ---
 
-# 9. Verifying the Installation
+# 10. Verifying the Development Environment
 
 Before continuing, verify the following.
 
 - [ ] Visual Studio Code is installed.
+- [ ] Git is installed.
 - [ ] Raspberry Pi Pico Extension is installed.
 - [ ] The repository has been cloned successfully.
 - [ ] The Template Project opens correctly.
 - [ ] The project builds successfully.
-- [ ] The firmware can be programmed into the RP2040.
+- [ ] The firmware is programmed successfully.
 - [ ] The Serial Monitor displays application output.
 
-If every item has been completed successfully, your development environment is ready.
+If all items have been completed successfully, your development environment is ready.
 
 ---
 
 # Key Takeaways
 
-After completing this chapter:
+After completing this chapter, you should remember the following ideas.
 
-- The development environment is fully configured.
-- The Template Project builds successfully.
-- The RP2040 can be programmed correctly.
-- The Serial Monitor is operational.
-- You are ready to begin studying multicore embedded systems.
+- Visual Studio Code and the Raspberry Pi Pico Extension provide the complete development environment.
+- The Raspberry Pi Pico Extension automatically installs the required development tools.
+- The Template Project is fully configured and includes the FreeRTOS Kernel.
+- The Template Project serves as the starting point for every laboratory.
+- No additional project configuration is required before beginning the laboratories.
 
 ---
 
 # Preparing for Chapter 1
 
-In the next chapter, you will explore why modern embedded systems increasingly rely on multicore processors and how the RP2040 architecture enables parallel execution using FreeRTOS SMP.
+Your development environment is now ready.
+
+In the next chapter, you will learn why modern embedded systems increasingly rely on multicore processors and how the RP2040 executes multiple FreeRTOS tasks simultaneously using FreeRTOS SMP.
