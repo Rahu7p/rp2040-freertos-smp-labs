@@ -16,84 +16,136 @@
 
 </p>
 
-## Overview
+# Overview
 
-This repository contains a complete laboratory manual designed to teach multicore embedded programming using the Raspberry Pi RP2040 microcontroller and the official FreeRTOS SMP kernel.
+This repository contains a complete laboratory manual designed for undergraduate Embedded Systems courses.
 
----
+The manual introduces multicore embedded programming using the **Raspberry Pi RP2040** microcontroller and the **FreeRTOS SMP** kernel through a combination of concise theoretical chapters and hands-on laboratory activities.
 
-## Documentation
-
-| Section | Description |
-|----------|-------------|
-| Getting Started | Development environment |
-| Chapter 0 | Environment setup |
-| Chapter 1 | RP2040 Architecture |
-| Chapter 2 | FreeRTOS SMP Fundamentals |
-| Laboratory 1 | Discovering the Scheduler |
-| Laboratory 2 | Designing Multicore Applications |
-| Troubleshooting | Common problems |
-| References | Books and Documentation |
+The material emphasizes experimentation, allowing students to observe, analyze, and understand the behavior of multicore embedded systems before developing their own applications.
 
 ---
 
-## Learning Path
+# Features
 
-1. Environment Setup
-2. RP2040 Architecture
-3. FreeRTOS SMP
-4. Laboratory 1
-5. Laboratory 2
-6. Advanced Laboratories
-7. Final Project
+- RP2040 dual-core architecture
+- FreeRTOS SMP
+- Hands-on laboratory activities
+- Fully self-contained Template Project
+- Step-by-step development environment setup
+- Multicore scheduling experiments
+- Task communication and synchronization
+- Cross-platform development (Windows, Linux, and macOS)
 
 ---
 
-## Hardware
+# Documentation
 
-The laboratories were designed using the following hardware:
+| Section | Description | Status |
+|----------|-------------|:------:|
+| Getting Started | Repository overview | ✅ |
+| Chapter 0 | Development Environment | ✅ |
+| Chapter 1 | Why do Embedded Systems Need More Than One Processor Core? | ✅ |
+| Chapter 2 | Task Communication and Synchronization | 🚧 |
+| Laboratory 1 | Discovering the FreeRTOS SMP Scheduler | ✅ |
+| Laboratory 2 | Designing Multicore Applications | 🚧 |
+| Troubleshooting | Common problems and solutions | 🚧 |
+| References | Books and official documentation | 🚧 |
+
+---
+
+# Learning Path
+
+Complete the manual in the following order.
+
+1. Chapter 0 — Development Environment
+2. Chapter 1 — Why do Embedded Systems Need More Than One Processor Core?
+3. Laboratory 1 — Discovering the FreeRTOS SMP Scheduler
+4. Chapter 2 — Task Communication and Synchronization
+5. Laboratory 2 — Designing Multicore Applications
+
+Each chapter prepares the concepts required for the following laboratory.
+
+---
+
+# Hardware
+
+The laboratories were designed using the following hardware.
 
 - Pololu Zumo RP2040 Robot
 - Raspberry Pi Pico (compatible)
 
 ---
 
-## Software
+# Software
 
-The following software versions were used.
+The following software is required.
 
 | Tool | Version |
-|-------|----------|
+|------|---------|
 | Visual Studio Code | Latest |
+| Raspberry Pi Pico Extension | Latest |
 | Pico SDK | 2.3.0 |
-| ARM GNU Toolchain | 15.2 |
 | FreeRTOS Kernel | V11.x |
-| CMake | Latest |
-| Ninja | Latest |
+| Git | Latest |
+
+> [!NOTE]
+>
+> The Raspberry Pi Pico Extension automatically installs and configures the required development tools, including the ARM GNU Toolchain, CMake, Ninja, OpenOCD, and picotool.
 
 ---
 
-## Repository Structure
+# Repository Structure
 
 ```text
-.
+rp2040-freertos-smp-labs/
+│
 ├── assets/
+│
 ├── docs/
-├── examples/
+│   ├── chapter00/
+│   ├── chapter01/
+│   ├── chapter02/
+│   │
+│   ├── labs/
+│   │   ├── lab01/
+│   │   └── lab02/
+│   │
+│   ├── troubleshooting/
+│   └── references/
+│
 ├── template_project/
+│
 ├── README.md
 └── LICENSE
 ```
----
-
-## Screenshots
-
-Coming soon...
 
 ---
 
-## Citation
+# Template Project
 
-If you use this material in an academic course, please cite this repository.
+The repository includes a fully configured **FreeRTOS SMP Template Project**.
+
+The project already contains:
+
+- FreeRTOS Kernel
+- RP2040 port
+- FreeRTOS configuration
+- Build system
+- Project structure
+
+No additional FreeRTOS installation is required.
 
 ---
+
+# License
+
+This project is distributed for educational purposes.
+
+Please refer to the LICENSE file for additional information.
+
+---
+
+# Citation
+
+If you use this material in an academic course or research project, please cite this repository.
