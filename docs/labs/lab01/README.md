@@ -11,6 +11,11 @@
 
 ## Required Material
 
+> [!NOTE]
+> Throughout this laboratory, avoid modifying multiple configuration parameters at the same time.
+>
+> Each activity introduces only one new concept. Complete every activity in sequence to better understand how each modification affects the FreeRTOS SMP scheduler.
+
 ### Hardware
 
 - Pololu Zumo RP2040 Robot
@@ -42,15 +47,21 @@ Create two identical FreeRTOS tasks and observe their execution through the seri
 ## Procedure
 
 1. Open the **Template Project**. (https://github.com/Rahu7p/rp2040-freertos-smp-labs/tree/main/template_project)
-2. Create two FreeRTOS tasks named:
+   
+3. Create two FreeRTOS tasks named:
+   
    - `TaskA`
    - `TaskB`
-3. Configure both tasks with:
+     
+4. Configure both tasks with:
+   
    - The same priority.
    - An infinite execution loop.
    - A delay of **500 ms** between iterations.
-4. Do **not** configure task affinity.
-5. Start the scheduler.
+     
+6. Do **not** configure task affinity.
+   
+8. Start the scheduler.
 
 Use the following `main()` structure as a reference.
 
@@ -72,8 +83,6 @@ int main(void)
 
 The serial terminal should display output similar to the following:
 
-Example:
-
 ```text
 Task A
 Task B
@@ -89,6 +98,7 @@ Task B
 ## Expected Behavior
 
 After running the application:
+
 - Both tasks should execute periodically.
 - Since no multicore information is printed, it should not be possible to determine which processor core executed each task.
 
@@ -138,6 +148,12 @@ Identify the processor core executing each FreeRTOS task and investigate how the
 
 ---
 
+## Estimated Time
+
+15 minutes
+
+---
+
 ## Procedure
 
 Starting from the solution developed in **Activity 1**, modify both tasks to display the processor core executing each task.
@@ -168,6 +184,7 @@ Allow the application to run for approximately **one minute** while observing th
 ## Expected Behavior
 
 After running the application:
+
 - Both tasks should continue executing periodically.
 - Each message should include the processor core number.
 - The scheduler will assign each task to one of the available processor cores.
@@ -218,16 +235,24 @@ Observe how the FreeRTOS SMP scheduler distributes multiple ready tasks when the
 
 ---
 
+## Estimated Time
+
+20 minutes
+
+---
+
 ## Procedure
 
 Starting from the solution developed in **Activity 2**, create a third FreeRTOS task named `TaskC`.
 
 Configure the new task with:
+
 - The same priority as `TaskA` and `TaskB`.
 - The same execution period (**500 ms**).
 - No task affinity.
 
 Do not modify:
+
 - Task priority.
 - Task delay.
 - Scheduler configuration.
@@ -252,6 +277,7 @@ Allow the application to run for approximately **one minute** while observing th
 ## Expected Behavior
 
 After running the application:
+
 - All three tasks should execute periodically.
 - Each task should display the processor core executing it.
 - Since only two processor cores are available, the scheduler must distribute three ready tasks across the available processor cores.
@@ -290,6 +316,7 @@ Before continuing to Activity 4, verify the following.
 Create a fourth FreeRTOS task named `TaskD`.
 
 Configure `TaskD` with:
+
 - The same priority as the other tasks.
 - The same execution period (**500 ms**).
 - No task affinity.
@@ -299,6 +326,7 @@ Build and execute the project.
 Observe how the scheduler distributes **four tasks** across the **two processor cores**.
 
 While observing the Serial Monitor, pay attention to the following:
+
 - How are the four tasks distributed across the two processor cores?
 - Does the task distribution remain stable?
 - Does the scheduler reorganize the task distribution during execution?
@@ -322,6 +350,12 @@ In the next activity, you will configure **task affinity** and observe how restr
 ## Objective
 
 Configure task affinity for a single task and observe how it restricts the scheduler while allowing the remaining tasks to execute without restrictions.
+
+---
+
+## Estimated Time
+
+20 minutes
 
 ---
 
@@ -353,6 +387,7 @@ Allow the application to run for approximately **one minute** while observing th
 ## Expected Behavior
 
 After running the application:
+
 - `TaskA` should always execute on **Core 0**.
 - `TaskB` and `TaskC` should continue executing normally.
 - The scheduler remains free to distribute `TaskB` and `TaskC` across the available processor cores.
@@ -403,6 +438,12 @@ Configure task affinity for multiple tasks and observe how the scheduler manages
 
 ---
 
+## Estimated Time
+
+15 minutes
+
+---
+
 ## Procedure
 
 Starting from the solution developed in **Activity 4**, configure task affinity for `TaskB`.
@@ -415,6 +456,7 @@ Assign the following processor cores:
 Leave `TaskC` without task affinity.
 
 Do not modify:
+
 - Task priority.
 - Task delay.
 - Scheduler configuration.
@@ -428,6 +470,7 @@ Allow the application to run for approximately **one minute** while observing th
 ## Expected Behavior
 
 After running the application:
+
 - `TaskA` should always execute on **Core 0**.
 - `TaskB` should always execute on **Core 1**.
 - `TaskC` remains the only task without affinity.
@@ -477,6 +520,12 @@ In the next activity, you will investigate how **task priority** influences sche
 ## Objective
 
 Investigate how task priority influences scheduler behavior when a high-priority task does and does not voluntarily release the processor.
+
+---
+
+## Estimated Time
+
+20-25 minutes
 
 ---
 
@@ -553,8 +602,8 @@ Collect the following evidence before completing the laboratory.
 | Evidence ID | Description |
 |--------------|-------------|
 | **E6.1** | Capture the modified implementation of `TaskC()` for both experiments. |
-| **E6.2** | Capture the Serial Monitor for **Experiment 1**. Describe the observed behavior of the three tasks. |
-| **E6.3** | Capture the Serial Monitor for **Experiment 2**. Describe how the execution changed after adding `vTaskDelay(1 ms)` to `TaskC`. |
+| **E6.2** | Capture the Serial Monitor for **Experiment 1**. Summarize the observed behavior of the three tasks. |
+| **E6.3** | Capture the Serial Monitor for **Experiment 2**. Summarize how the execution changed after adding `vTaskDelay(1 ms)` to `TaskC`. |
 
 ---
 
