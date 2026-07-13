@@ -66,24 +66,24 @@ The course is organized into four complementary components.
 
 ---
 
-# Learning Journey
+# Course Roadmap
 
-Complete the course in the following order.
+The course follows a progressive learning path where each chapter prepares the concepts required for the following laboratory.
 
-```text
-Development Environment
-        │
-        ▼
-Why Multicore?
-        │
-        ▼
-Discovering the Scheduler
-        │
-        ▼
-Task Cooperation
-        │
-        ▼
-Designing Multicore Applications
+```mermaid
+flowchart LR
+
+A["Chapter 0<br/>Development Environment"]
+--> B["Chapter 1<br/>Why Multicore?"]
+--> C["Laboratory 1<br/>Discovering the Scheduler"]
+--> D["Chapter 2<br/>Task Cooperation"]
+--> E["Laboratory 2<br/>Designing Multicore Applications"]
+
+style A fill:#E3F2FD,stroke:#1976D2,stroke-width:2px
+style B fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+style C fill:#FFF8E1,stroke:#F9A825,stroke-width:2px
+style D fill:#E8F5E9,stroke:#388E3C,stroke-width:2px
+style E fill:#FFF8E1,stroke:#F9A825,stroke-width:2px
 ```
 
 Each stage prepares the knowledge required for the next one.
