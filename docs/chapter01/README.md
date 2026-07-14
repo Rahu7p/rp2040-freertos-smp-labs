@@ -4,7 +4,7 @@
 ---
 
 <p align="center">
-<img src="assets/chapters/chapter01.png" width="900">
+<img src="rp2040-freertos-smp-labs/assets/chapters/chapter01.png" width="900">
 </p>
 
 ---
