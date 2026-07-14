@@ -1,5 +1,5 @@
 # Chapter 1
-# Why do embedded systems need more than one processor core?
+# Why Do Embedded Systems Need More Than One Processor Core?
 
 ---
 
@@ -11,7 +11,7 @@ After completing this chapter, you should be able to:
 - Differentiate between concurrency and parallelism.
 - Describe the main architectural features of the RP2040 multicore processor.
 - Explain how FreeRTOS SMP executes tasks on multiple processor cores.
-- Apply these concepts during Laboratory 1.
+- Predict how the FreeRTOS SMP scheduler distributes tasks across both processor cores.
 
 ---
 
@@ -42,7 +42,13 @@ B --> CPU
 C --> CPU
 D --> CPU
 
-CPU["Single Processor Core"]
+CPU["Single-Core Processor"]
+
+style CPU fill:#1565C0,color:#ffffff,stroke:#0D47A1,stroke-width:2px
+style A fill:#E8F5E9
+style B fill:#FFF8E1
+style C fill:#E3F2FD
+style D fill:#FCE4EC
 ```
 
 **Figure 1.1.** Multiple tasks competing for a single processor core.
@@ -57,22 +63,52 @@ Although these terms are often used interchangeably, they describe different con
 
 **Parallelism** is the simultaneous execution of multiple tasks using multiple processor cores.
 
+In practice, modern embedded systems often combine both techniques. Multiple tasks execute concurrently, while multiple processor cores allow some of those tasks to execute in parallel.
+
 > [!NOTE]
+>
 > Every parallel system is concurrent, but not every concurrent system is parallel.
 
 ```mermaid
 flowchart LR
 
 subgraph Single-Core
-A1["Task A"]
-B1["Task B"]
-C1["Task C"]
+
+S1["Scheduler"]
+
+S1 --> C0["Processor Core"]
+
+C0 --> T1["Task A"]
+C0 --> T2["Task B"]
+C0 --> T3["Task C"]
+
 end
 
 subgraph Dual-Core
-A2["Core 0<br/>Task A"]
-B2["Core 1<br/>Task B"]
+
+S2["Scheduler"]
+
+S2 --> P0["Core 0"]
+S2 --> P1["Core 1"]
+
+P0 --> TA["Task A"]
+P1 --> TB["Task B"]
+
 end
+
+style S1 fill:#1565C0,color:#ffffff
+style S2 fill:#1565C0,color:#ffffff
+
+style C0 fill:#BBDEFB
+style P0 fill:#BBDEFB
+style P1 fill:#BBDEFB
+
+style T1 fill:#E8F5E9
+style T2 fill:#FFF8E1
+style T3 fill:#FCE4EC
+
+style TA fill:#E8F5E9
+style TB fill:#FFF8E1
 ```
 
 **Figure 1.2.** Concurrency (left) versus parallelism (right).
@@ -91,7 +127,9 @@ Its main multicore features include:
 - Hardware spinlocks
 - Shared peripheral bus
 
-Both processor cores execute the same instruction set and have access to the same memory space, allowing them to cooperate efficiently while sharing system resources.
+Because both processor cores share the same memory, they can exchange information efficiently while executing independent tasks.
+
+Both cores execute the same instruction set and have access to the same memory space, allowing them to cooperate while sharing system resources.
 
 ```mermaid
 flowchart TB
@@ -118,6 +156,12 @@ C0 --- LOCK
 C1 --- LOCK
 
 end
+
+style C0 fill:#BBDEFB
+style C1 fill:#BBDEFB
+style RAM fill:#E8F5E9
+style FIFO fill:#FFF8E1
+style LOCK fill:#FCE4EC
 ```
 
 **Figure 1.3.** Simplified RP2040 multicore architecture.
@@ -130,9 +174,27 @@ Traditional FreeRTOS schedules tasks on a single processor core.
 
 FreeRTOS SMP extends the scheduler so that multiple ready tasks can execute simultaneously on different processor cores.
 
-The scheduler automatically assigns tasks to the available cores. Optionally, task affinity can be used to restrict a task to a specific processor.
+The scheduler continuously evaluates the set of ready tasks and assigns them to the available processor cores.
 
-During the next laboratory, you will observe how FreeRTOS SMP distributes tasks between both RP2040 cores and how task affinity influences scheduler behavior.
+Under normal conditions, a task may execute on either processor core unless task affinity explicitly restricts where it can run.
+
+---
+
+# 5. What Will You Observe in Laboratory 1?
+
+The concepts introduced in this chapter will be explored through a series of guided experiments.
+
+Instead of studying the scheduler only through theory, you will execute multiple FreeRTOS applications and observe how tasks are distributed across the two RP2040 processor cores.
+
+During Laboratory 1 you will investigate questions such as:
+
+- Can a task execute on either processor core?
+- Does a task always remain on the same core?
+- How does task affinity influence scheduling?
+- How does system load affect processor utilization?
+- How does task priority influence scheduler behavior?
+
+The objective is not to memorize scheduler rules, but to develop engineering intuition by comparing predictions with experimental observations.
 
 ---
 
@@ -144,15 +206,17 @@ After completing this chapter, you should remember the following ideas:
 - Concurrency and parallelism are different concepts.
 - The RP2040 integrates two ARM Cortex-M0+ processor cores.
 - Both cores share the same memory system.
-- FreeRTOS SMP allows multiple tasks to execute simultaneously on both cores.
-- Task affinity can be used to control where a task executes.
+- FreeRTOS SMP allows multiple tasks to execute simultaneously.
+- Without task affinity, the scheduler is free to move tasks between processor cores.
 
 ---
 
 # Preparing for Laboratory 1
 
-In **Laboratory 1** you will observe the behavior of the FreeRTOS SMP scheduler running on the RP2040.
+In **Laboratory 1**, you will investigate how the FreeRTOS SMP scheduler behaves on a real multicore embedded system.
 
-Before executing the provided application, you will predict how tasks are assigned to each processor core and compare your predictions with the actual execution.
+Rather than studying the scheduler through implementation details, you will perform a sequence of controlled experiments to observe its behavior directly.
 
-The objective is to understand how a multicore scheduler behaves before learning how to configure and optimize it.
+Throughout the laboratory, you will compare your predictions with the observed execution and progressively develop an intuitive understanding of multicore task scheduling.
+
+The implementation details of the scheduler will be introduced later, after you have gained practical experience observing its behavior.
