@@ -3,6 +3,12 @@
 
 ---
 
+<p align="center">
+<img src="assets/chapters/chapter01.png" width="900">
+</p>
+
+---
+
 ## Learning Objectives
 
 After completing this chapter, you should be able to:
