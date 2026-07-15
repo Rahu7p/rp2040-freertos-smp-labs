@@ -574,3 +574,216 @@ So far, you have used a Queue to transfer data and a Binary Semaphore to synchro
 In many embedded systems, however, multiple tasks must access the same hardware resource, such as a UART, an I²C peripheral, or a shared memory buffer.
 
 In the next activity, you will investigate how a **Mutex** protects a shared resource from concurrent access.
+
+---
+
+# Activity 5 - Protecting a Shared Resource with a Mutex
+
+---
+
+## Objective
+
+In the previous activity, the Producer and Consumer tasks synchronized their execution using a Binary Semaphore.
+
+In this activity, two tasks will access a **shared resource** concurrently. The objective is to observe how concurrent access can produce inconsistent data and how a **Mutex** guarantees exclusive access to the shared resource.
+
+---
+
+## Procedure
+
+Continue using the application developed in **Activity 4**.
+
+### Part A - Observing a Race Condition
+
+1. Remove the Binary Semaphore and all semaphore-related code from the application.
+
+2. Create the following shared data structure.
+
+```c
+typedef struct
+{
+    uint32_t value;
+    uint32_t checksum;
+} SharedData_t;
+```
+
+3. Create two new tasks:
+
+- `WriterTask`
+- `ReaderTask`
+
+4. Configure task affinity as follows:
+
+- `WriterTask` executes on **Core 0**.
+- `ReaderTask` executes on **Core 1**.
+
+5. The `WriterTask` shall continuously update the shared structure.
+
+To make the race condition easier to observe, intentionally insert a short delay between updating both fields.
+
+6. The `ReaderTask` shall continuously verify that the following relationship is always satisfied:
+
+```text
+checksum = value × 2
+```
+
+Whenever the relationship is violated, display the inconsistent data.
+
+7. Build and execute the application.
+
+---
+
+## Example Output (Without Mutex)
+
+```text
+Inconsistent Shared Data!
+
+Value    : 4300
+Checksum : 8598
+Expected : 8600
+
+Inconsistent Shared Data!
+
+Value    : 4301
+Checksum : 8600
+Expected : 8602
+```
+
+Notice that the Reader occasionally observes the shared structure while it is only partially updated.
+
+This situation is known as a **race condition**.
+
+> [!NOTE]
+>
+> The delay inserted inside the WriterTask intentionally enlarges the inconsistent update window.
+>
+> This delay is included only for educational purposes to make the race condition easier to observe. In a real embedded application, critical sections should be kept as short as possible.
+
+---
+
+## Part B - Protecting the Shared Resource
+
+Modify the application by protecting the shared structure with a **Mutex**.
+
+Based on the concepts introduced in **Chapter 2**, determine the appropriate FreeRTOS synchronization mechanism.
+
+> **Hint:** Use a **Mutex** (`xSemaphoreCreateMutex()`).
+
+Both the `WriterTask` and the `ReaderTask` must acquire the Mutex before accessing the shared structure and release it immediately after completing their operation.
+
+Build and execute the application again.
+
+---
+
+## Example Output (With Mutex)
+
+```text
+Shared Data is consistent.
+
+Value    : 4300
+Checksum : 8600
+
+Shared Data is consistent.
+
+Value    : 4301
+Checksum : 8602
+
+Shared Data is consistent.
+
+Value    : 4302
+Checksum : 8604
+```
+
+Notice that the Reader never observes an inconsistent state after the shared resource is protected.
+
+---
+
+## Expected Behavior
+
+### Without Mutex
+
+- The Writer executes on **Core 0**.
+- The Reader executes on **Core 1**.
+- The Reader occasionally detects inconsistent shared data.
+- Multiple race conditions are observed.
+
+### With Mutex
+
+- Both tasks continue executing on different processor cores.
+- The shared resource is accessed exclusively.
+- No inconsistent shared data is observed.
+- Every reported value satisfies:
+
+```text
+checksum = value × 2
+```
+
+---
+
+## Suggested FreeRTOS Documentation
+
+For this activity, you may consult the following FreeRTOS API documentation:
+
+- Mutex API
+- Semaphore API
+- Task Management
+
+---
+
+## Evidence Collection
+
+| Evidence ID | Description |
+|--------------|-------------|
+| **E5.1** | Screenshot showing the shared data structure. |
+| **E5.2** | Screenshot showing the WriterTask implementation. |
+| **E5.3** | Screenshot showing the ReaderTask implementation. |
+| **E5.4** | Screenshot of the Serial Monitor showing inconsistent shared data before introducing the Mutex. |
+| **E5.5** | Screenshot showing the Mutex creation (`xSemaphoreCreateMutex()`). |
+| **E5.6** | Screenshot showing both tasks acquiring and releasing the Mutex. |
+| **E5.7** | Screenshot of the Serial Monitor showing that the shared data remains consistent after introducing the Mutex. |
+
+---
+
+## Reflection
+
+Answer the following questions before continuing.
+
+1. Why does the Reader observe inconsistent data before introducing the Mutex?
+2. Which shared resource is being protected?
+3. What portion of the WriterTask represents the critical section?
+4. How does the Mutex eliminate the race condition?
+5. Why must both the WriterTask and the ReaderTask acquire the Mutex?
+6. If the shared resource contained ten variables instead of two, would protecting only one variable with a Mutex be sufficient? Explain your answer.
+
+---
+
+## Checkpoint
+
+Before continuing to Activity 6, verify the following.
+
+- [ ] The WriterTask executes on Core 0.
+- [ ] The ReaderTask executes on Core 1.
+- [ ] Race conditions are observed before introducing the Mutex.
+- [ ] The Mutex is successfully created using `xSemaphoreCreateMutex()`.
+- [ ] Both tasks correctly acquire and release the Mutex.
+- [ ] No inconsistent shared data is observed after protecting the shared resource.
+
+---
+
+## Key Concept
+
+A **Mutex** protects a **critical section**, not an individual variable.
+
+The goal is to guarantee that a complete operation on a shared resource is executed atomically, preventing other tasks from observing intermediate or inconsistent states.
+
+---
+
+## Next Activity
+
+So far, you have learned how to:
+
+- Transfer data using a Queue.
+- Synchronize tasks using a Binary Semaphore.
+- Protect a shared resource using a Mutex.
+
+In the next activity, you will coordinate multiple independent events using an **Event Group**, allowing a task to wait for several synchronization conditions simultaneously.
