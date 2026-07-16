@@ -27,7 +27,7 @@
 >
 > This laboratory focuses on **task synchronization**, not peripheral programming.
 >
-> The `TemperatureTask`, `DistanceTask`, and `UARTTask` are **software simulations** that emulate the behavior of typical embedded devices. Their purpose is to provide realistic application scenarios while allowing you to concentrate on understanding the synchronization mechanisms provided by FreeRTOS SMP.
+> The `TemperatureTask`, `DistanceTask`, and `CommunicationTask` are **software simulations** that emulate the behavior of typical embedded devices. Their purpose is to provide realistic application scenarios while allowing you to concentrate on understanding the synchronization mechanisms provided by FreeRTOS SMP.
 >
 > No external sensors or additional hardware are required.
 
